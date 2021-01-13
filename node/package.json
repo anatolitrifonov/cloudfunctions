@@ -1,0 +1,15 @@
+{
+  "name": "test-node-app",
+  "version": "1.0.0",
+  "description": "general test of all sort of stuff from node",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Anatoli Trifonov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security"
+  }
+}
