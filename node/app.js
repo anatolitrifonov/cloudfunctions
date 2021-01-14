@@ -1,31 +1,34 @@
-const express = require('express')
-const http = require('http')
+const express = require('express');
+const http = require('http');
+const https = require('https');
 
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
 
-	http
-  .request(
-    {
-	  hostname: "localhost",
-	  port: 8080,
-      path: "/"
-    },
-    res => {
-      let data = ""
+  // Sample URL 
+  const url = 'https://us-central1-nvvservice.cloudfunctions.net/test-function'; 
+  
+  console.log('test');
 
-      res.on("data", d => {
-        data += d
-      })
-      res.on("end", () => {
-        console.log(data)
-      })
-    }
-  )
-  .end()
-
+  const request = https.request(url, (response) => { 
+    let data = ''; 
+    response.on('data', (chunk) => { 
+      data = data + chunk.toString(); 
+    }); 
+  
+    response.on('end', () => { 
+      console.log(data); 
+    }); 
+  }) 
+  
+  request.on('error', (error) => { 
+    console.log('An error', error); 
+  }); 
+  
+  request.end() 
+  
 
   res.send('Hello  555555 World!')
 })
